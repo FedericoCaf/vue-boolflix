@@ -3,8 +3,12 @@
     <div class="logo"></div>
 
     <div class="search-bar fc-flex fc-between fc-align-center">
-      <input v-model="search" placeholder="cerca un film">
-      <button>click</button>   
+      <input 
+      v-model="querySearch" 
+      placeholder="inserisci un film"
+      @keyup.enter="$emit('sendQuerySearch', querySearch)"
+      >
+      <button @click="$emit('sendQuerySearch', querySearch)" > CERCA </button>   
     </div>  
   </header>
 </template>
@@ -16,7 +20,7 @@ export default {
 
   data(){
     return{
-      search: ''
+      querySearch: ''
     }
   }
 }

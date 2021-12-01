@@ -24,7 +24,7 @@ export default {
 <style lang="scss">
 
  main{
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
   background-color: darkseagreen;
    .card{
      height: 400px;

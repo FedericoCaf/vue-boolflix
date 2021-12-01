@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
 
-    <Header/>
+    <Header @sendQuerySearch="querySearchFunction"/>
 
     <Main :resultsArray="resultsArray"/>
   
@@ -16,14 +16,19 @@ import axios from 'axios'
 
 export default {
 
-  mounted(){
-   this.getApi();
-  },
+  // mounted(){
+  //  this.getApi();
+  // },
 
   data(){
     return{
       resultsArray: [],
-      apiURL: 'https://api.themoviedb.org/3/search/movie?api_key=2773f939423c2a6dac0e7e805c296cf6&query=braveheart',
+      apiKey: 'api_key=2773f939423c2a6dac0e7e805c296cf6&',
+      filmserie: 'Film',
+      querySearch: 'Braveheart',
+      language: '&language=it_IT',
+      page: '&page=1',
+      apiURL: 'https://api.themoviedb.org/3/search/movie?',
 
     }
   },
@@ -34,9 +39,10 @@ export default {
     Main
   },
 
+   
   methods:{
     getApi(){
-      axios.get(this.apiURL)
+      axios.get(`${this.apiURL}${this.apiKey}'&query='${this.querySearch}`)
       .then( r => {
         this.resultsArray = r.data.results;
         console.log(this.resultsArray);
@@ -45,6 +51,14 @@ export default {
         console.log(e);
       })
     },
+
+      querySearchFunction(text){
+      this.querySearch = text;
+      console.log(this.querySearch);
+      this.getApi();
+    }
+
+
   }
 }
 
