@@ -18,11 +18,11 @@ export default {
 
   data(){
     return{
-      resultsArray: [],
-      resultsArrayTv: [],
+      arrayMovie: [],
+      arrayTv: [],
       arrayConcat: [],
       apiKey:'api_key=2773f939423c2a6dac0e7e805c296cf6&',
-      filmserie: 'Film',
+
       querySearch: '',
       language: '&language=it_IT',
       page: '&page=1',
@@ -38,21 +38,12 @@ export default {
   },
 
   methods:{
-    getApiMovie(){
+
+    getApi(array1, array2){
       axios.get(`${this.apiURLmovie}${this.apiKey}'&query='${this.querySearch}`)
       .then( r => {
-        this.resultsArray = r.data.results;
-        this.arrayConcat = this.resultsArray.concat(this.resultsArrayTv);
-      })
-      .catch( e => {
-        console.log(e);
-      })
-    },
-    getApiTv(){
-      axios.get(`${this.apiURLtv}${this.apiKey}'&query='${this.querySearch}`)
-      .then( resp => {
-        this.resultsArrayTv = resp.data.results;
-        this.arrayConcat = this.resultsArray.concat(this.resultsArrayTv);
+        array1 = r.data.results;
+        this.arrayConcat = array1.concat(array2);
       })
       .catch( e => {
         console.log(e);
@@ -61,8 +52,7 @@ export default {
 
       querySearchFunction(text){
        this.querySearch = text;
-       this.getApiMovie();
-       this.getApiTv();
+       this.getApi(this.arrayMovie, this.arrayTv);
       
         console.log('search query',this.querySearch);
         console.log('array film',this.resultsArray);
