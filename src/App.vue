@@ -48,17 +48,25 @@ export default {
       .catch( e => {
         console.log(e);
       })
+
+      axios.get(`${this.apiURLtv}${this.apiKey}'&query='${this.querySearch}`)
+      .then( resp => {
+        array2 = resp.data.results;
+        this.arrayConcat = array1.concat(array2);
+
+      })
+      .catch( e => {
+        console.log(e);
+      })
+        console.log('search query',this.querySearch);
+        console.log('array film',this.arrayMovie);
+        console.log('array tv',this.arrayTv);
+        console.log('array concatenato', this.arrayConcat);
     },
 
       querySearchFunction(text){
        this.querySearch = text;
        this.getApi(this.arrayMovie, this.arrayTv);
-      
-        console.log('search query',this.querySearch);
-        console.log('array film',this.resultsArray);
-        console.log('array tv',this.resultsArrayTv);
-        console.log('array concatenato', this.arrayConcat);
-      
     }
 
   }
