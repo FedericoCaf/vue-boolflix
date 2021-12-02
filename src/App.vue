@@ -3,8 +3,8 @@
 
     <Header @sendQuerySearch="querySearchFunction"/>
 
-    <Main :resultsArray="resultsArray"/>
-  
+    <Main :arrayConcat="arrayConcat" />
+   
   </div>
 </template>
 
@@ -16,20 +16,18 @@ import axios from 'axios'
 
 export default {
 
-  // mounted(){
-  //  this.getApi();
-  // },
-
   data(){
     return{
       resultsArray: [],
-      apiKey: 'api_key=2773f939423c2a6dac0e7e805c296cf6&',
+      resultsArrayTv: [],
+      arrayConcat: [],
+      apiKey:'api_key=2773f939423c2a6dac0e7e805c296cf6&',
       filmserie: 'Film',
-      querySearch: 'Braveheart',
+      querySearch: '',
       language: '&language=it_IT',
       page: '&page=1',
-      apiURL: 'https://api.themoviedb.org/3/search/movie?',
-
+      apiURLmovie:'https://api.themoviedb.org/3/search/movie?',
+      apiURLtv:'https://api.themoviedb.org/3/search/tv?',
     }
   },
 
@@ -39,25 +37,57 @@ export default {
     Main
   },
 
-   
   methods:{
-    getApi(){
-      axios.get(`${this.apiURL}${this.apiKey}'&query='${this.querySearch}`)
+    getApiMovie(){
+      axios.get(`${this.apiURLmovie}${this.apiKey}'&query='${this.querySearch}`)
       .then( r => {
         this.resultsArray = r.data.results;
-        console.log(this.resultsArray);
+      })
+      .catch( e => {
+        console.log(e);
+      })
+    },
+    getApiTv(){
+      axios.get(`${this.apiURLtv}${this.apiKey}'&query='${this.querySearch}`)
+      .then( resp => {
+        this.resultsArrayTv = resp.data.results;
+        this.arrayConcat = this.resultsArray.concat(this.resultsArrayTv);
+        // console.log('search query',this.querySearch);
+        // console.log('array film',this.resultsArray);
+        // console.log('array tv',this.resultsArrayTv);
+        // console.log('array concatenato', this.arrayConcat);
+      
       })
       .catch( e => {
         console.log(e);
       })
     },
 
-      querySearchFunction(text){
-      this.querySearch = text;
-      console.log(this.querySearch);
-      this.getApi();
-    }
+    // concatFunction(){
 
+    //   if(this.resultsArray.length > 0 || this.resultsArrayTv.length > 0 ){
+    //     this.arrayConcat = [...this.resultsArray, ...this.resultsArrayTv]
+    //   }else if(this.resultsArray.length > 0 || this.resultsArrayTv.length < 1 ){
+    //     this.arrayConcat = this.resultsArray;
+    //   }else if(this.resultsArray.length < 1 || this.resultsArrayTv.length > 0 ){
+    //     this.arrayConcat = this.resultsArrayTv;
+    //   }else{
+    //     this.arrayConcat;
+    //   }
+    //   return this.arrayConcat  
+    // },
+
+      querySearchFunction(text){
+       this.querySearch = text;
+       this.getApiMovie();
+       this.getApiTv();
+      
+        console.log('search query',this.querySearch);
+        console.log('array film',this.resultsArray);
+        console.log('array tv',this.resultsArrayTv);
+        console.log('array concatenato', this.arrayConcat);
+      
+    }
 
   }
 }

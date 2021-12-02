@@ -4,9 +4,9 @@
 
     <div class="search-bar fc-flex fc-between fc-align-center">
       <input 
-      v-model="querySearch" 
-      placeholder="inserisci un film"
-      @keyup.enter="$emit('sendQuerySearch', querySearch)"
+        v-model="querySearch" 
+        placeholder="inserisci un film"
+        @keyup.enter="$emit('sendQuerySearch', querySearch)"
       >
       <button @click="$emit('sendQuerySearch', querySearch)" > CERCA </button>   
     </div>  
@@ -20,7 +20,7 @@ export default {
 
   data(){
     return{
-      querySearch: ''
+      querySearch: '',
     }
   }
 }
