@@ -1,14 +1,14 @@
 <template>
 <main>
   <div class="global-title fc-container">
-   <select v-model="selection">
-     <option selected value="0">Tutti</option>
+   <select @change="switchSelect($event)">
+     <option selected value="0">Tutto</option>
      <option value="1">Film</option>
      <option value="2">Serie Tv</option>
    </select>
   </div>
   <div class="fc-container fc-flex fc-wrap">
-    <div v-for="item in arrayConcat" :key="item.id" class="card">
+    <div v-for="item in filteredCards" :key="item.id" class="card">
         <div class="card-img">
 
           <img v-if="item.poster_path !== null " :src="'http://image.tmdb.org/t/p/w300' + item.poster_path" alt="">
@@ -68,9 +68,34 @@ export default {
      data() {
       return {
          imgURL: 'https://image.tmdb.org/t/p/w342/',
-         isVisible: true
+         selected: '',
       }
    },
+
+
+    computed:{
+
+    filteredCards(){
+    
+      if(this.selected == 0 || this.selected == '' ){
+        console.log('>>>>>>>>>>>>>>>>>>>',this.selected);
+        return this.arrayConcat;
+
+      }else if(this.selected == 1){
+        return this.arrayConcat.filter( item => {
+        return Object.prototype.hasOwnProperty.call(item, 'title')
+      })
+      }
+        return this.arrayConcat.filter( item => {
+        return Object.prototype.hasOwnProperty.call(item, 'name')
+      })
+      
+
+
+    }
+
+  },
+    
   
   methods:{
        langFunction(item) {
@@ -83,26 +108,13 @@ export default {
          return imgUrl;
       },
 
-      // visibleFunction(obj, text){
-      //   if(text === 'film'){
-      //     if(obj.hasOwnProperty('title')) {
-      //       this.isVisible = true;
-      //     }
-      //     if((obj.hasOwnProperty('name')))
-      //       this.isVisible = false;
+      switchSelect(event) {
+      this.selected = event.target.value;
+    }
 
-      //   } else if(text === 'serie tv')ı
-      //      if(obj.hasOwnProperty('title')) {
-      //       this.isVisible = false;
-      //     }
-      //     if((obj.hasOwnProperty('name')))
-      //       text = true;
-
-      //       return this.isVisible
-      // }
-  },
-
+  }
 }
+
 </script>
 
 <style lang="scss">

@@ -28,7 +28,6 @@ export default {
 
 <style lang="scss" scoped>
 
-
  header{
    height: 100px;
   //  background-color: black;
@@ -39,6 +38,7 @@ export default {
       height: 80px;
       font-size: 35px;
       color:rgb(199, 15, 15);
+      cursor: pointer;
     }
     .search-bar{
       width: 300px;
