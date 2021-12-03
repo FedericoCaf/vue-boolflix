@@ -5,7 +5,7 @@
     <div class="search-bar fc-flex fc-between fc-align-center">
       <input 
         v-model="querySearch" 
-        placeholder="inserisci un film"
+        placeholder="cerca film o serie tv"
         @keyup.enter="$emit('sendQuerySearch', querySearch)"
       >
       <button @click="$emit('sendQuerySearch', querySearch)" > CERCA </button>   
@@ -49,6 +49,7 @@ export default {
          height: 25px;
          border: none;
          padding-left: 5px;
+         border-radius: 5px;;
         }
         button{
           width: 30%;
@@ -56,6 +57,10 @@ export default {
           border-radius: 0;
           border: none;
           cursor: pointer;
+          background-color: rgb(139, 16, 16);
+          color: white;
+          font-weight: bold;
+          border-radius: 5px;
         }
     }
  }

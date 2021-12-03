@@ -1,14 +1,28 @@
 <template>
-  <main class="fc-container fc-flex fc-wrap">
+<main>
+  <div class="global-title fc-container">
+   <select v-model="selection">
+     <option selected value="0">Tutti</option>
+     <option value="1">Film</option>
+     <option value="2">Serie Tv</option>
+   </select>
+  </div>
+  <div class="fc-container fc-flex fc-wrap">
     <div v-for="item in arrayConcat" :key="item.id" class="card">
-      <div class="card-img">
-        <img :src="'http://image.tmdb.org/t/p/w300' + item.poster_path" alt="">
-      </div>
-      <div class="card-text">
+        <div class="card-img">
+
+          <img v-if="item.poster_path !== null " :src="'http://image.tmdb.org/t/p/w300' + item.poster_path" alt="">
+          <div v-else class="card fc-flex fc-align-center fc-justify-center">
+             <h2 v-if="item.hasOwnProperty('title')"> {{item.title}} </h2>
+             <h2 v-if="item.hasOwnProperty('name')"> {{item.name}} </h2>
+           </div>
+        </div>
+
+        <div class="card-text">
            <div class="container-title">
              <h2 v-if="item.hasOwnProperty('title')"> {{item.title}} </h2>
              <h2 v-if="item.hasOwnProperty('name')"> {{item.name}} </h2>
-         </div>
+           </div>
    
            <ul>
              <div class="content-card-top">
@@ -35,12 +49,10 @@
                 <li> <strong>Trama:</strong>  {{item.overview}} </li> 
               </div>  
          
-          </ul>
-      </div>
-
-        
+            </ul>
+         </div>
     </div>
-
+   </div>
   </main>
 </template>
 
@@ -56,6 +68,7 @@ export default {
      data() {
       return {
          imgURL: 'https://image.tmdb.org/t/p/w342/',
+         isVisible: true
       }
    },
   
@@ -69,6 +82,24 @@ export default {
          
          return imgUrl;
       },
+
+      // visibleFunction(obj, text){
+      //   if(text === 'film'){
+      //     if(obj.hasOwnProperty('title')) {
+      //       this.isVisible = true;
+      //     }
+      //     if((obj.hasOwnProperty('name')))
+      //       this.isVisible = false;
+
+      //   } else if(text === 'serie tv')ı
+      //      if(obj.hasOwnProperty('title')) {
+      //       this.isVisible = false;
+      //     }
+      //     if((obj.hasOwnProperty('name')))
+      //       text = true;
+
+      //       return this.isVisible
+      // }
   },
 
 }
@@ -78,14 +109,13 @@ export default {
 
  main{
   min-height: calc(100vh - 100px);
-  overflow: hidden;
    .card{
      position: relative;
      color: white;
      height: 410px;
+
      width: 300px;
-    //  border: 1px solid white;
-     margin: 25px;
+     margin: 18px;
      padding: 10px;
       .content-card-top{
         height: 35%;
@@ -111,10 +141,20 @@ export default {
          color:gray;
        }
 
-      //  img{
-      //    height: 100%;
-      //  }
    }
+
+.global-title{
+        height: 60px;
+        width: 100%;
+        color: white;
+      }
+    select{
+      margin-left: 30px;
+      width: 120px;
+      height: 22px;
+      border: none;
+      border-radius: 5px;
+    }
 
  }
 
@@ -126,33 +166,20 @@ export default {
  }
 
   .language {
-        width: 23px;
+    width: 23px;
    }
-
-   ::-webkit-scrollbar {
-    display: none;
-}
-
-//    ::-webkit-scrollbar {
-//   width: 10px;
-// }
-// ::-webkit-scrollbar-track {
-//   background: #f1f1f1; 
-// }
-// ::-webkit-scrollbar-thumb {
-//   background: rgb(201, 191, 191); 
-// }
-// ::-webkit-scrollbar-thumb:hover {
-//   background: rgb(167, 162, 162); 
-// }
 
 .card-text{
   opacity: 0;
   transition: all 2s;
 }
-.card-img{
+.card-img{ 
   opacity: 1;
   transition: all 2s;
+   img{
+         max-height: 100%;
+         width: 100%;
+       }
 }
 .card:hover .card-text{
   opacity: 1;
@@ -168,9 +195,5 @@ export default {
   height: 410px;
   width: 300px;
 }
-
-
-
-
 
 </style>
