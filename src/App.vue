@@ -23,7 +23,7 @@ export default {
       arrayConcat: [],
       apiKey:'api_key=2773f939423c2a6dac0e7e805c296cf6&',
 
-      querySearch: '',
+      querySearch: 'Terminator',
       language: '&language=it_IT',
       page: '&page=1',
       apiURLmovie:'https://api.themoviedb.org/3/search/movie?',
@@ -36,6 +36,10 @@ export default {
     Header,
     Main
   },
+
+   mounted(){
+      this.getApi(this.arrayMovie, this.arrayTv);
+    },
 
   methods:{
 
@@ -79,5 +83,7 @@ export default {
  @import "./assets/style/vars.scss";
  @import "./assets/style/generals.scss";
  @import "./assets/style/utilities.scss";
+
+
 
 </style>

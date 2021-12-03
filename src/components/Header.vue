@@ -1,6 +1,6 @@
 <template>
   <header class="fc-flex fc-between fc-align-center">
-    <div class="logo"></div>
+    <div class="logo fc-flex fc-align-center fc-justify-center"> BOOLFLIX </div>
 
     <div class="search-bar fc-flex fc-between fc-align-center">
       <input 
@@ -26,20 +26,22 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
 
  header{
    height: 100px;
-   background-color: black;
+  //  background-color: black;
+   background: linear-gradient(rgb(14, 0, 0), black);
    color: white;
     .logo{
       width: 200px;
-      background-color: darkturquoise;
       height: 80px;
+      font-size: 35px;
+      color:rgb(199, 15, 15);
     }
     .search-bar{
       width: 300px;
-      background-color: darkturquoise;
       height: 80px;
       padding: 10px;
         input{
