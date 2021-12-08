@@ -3,7 +3,7 @@
 
     <Header @sendQuerySearch="querySearchFunction"/>
 
-    <Main :arrayConcat="arrayConcat" />
+    <Main :arrayConcat="arrayConcat" :arrayTrend="arrayTrend" :arrayMovie="arrayMovie" :arrayTv="arrayTv"     :arrayRecommended="arrayRecommended" :arrayTop="arrayTop" :searchClicked="searchClicked" :arrayTvPop="arrayTvPop" />
    
   </div>
 </template>
@@ -18,16 +18,26 @@ export default {
 
   data(){
     return{
+      searchClicked:false,
+      arrayTrend: [],
       arrayMovie: [],
       arrayTv: [],
       arrayConcat: [],
+      arrayRecommended: [],
+      arrayTop: [],
+      arrayTvPop: [],
+
       apiKey:'api_key=2773f939423c2a6dac0e7e805c296cf6&',
 
       querySearch: 'Terminator',
       language: '&language=it_IT',
       page: '&page=1',
+      apiURLtrend: 'https://api.themoviedb.org/3/trending/all/week?',
       apiURLmovie:'https://api.themoviedb.org/3/search/movie?',
       apiURLtv:'https://api.themoviedb.org/3/search/tv?',
+      apiURLrecommended: 'https://api.themoviedb.org/3/movie/105/recommendations?',
+      apiURLtop: 'https://api.themoviedb.org/3/movie/top_rated?',
+      apiURLtvPop: 'https://api.themoviedb.org/3/tv/popular?'
     }
   },
 
@@ -38,16 +48,62 @@ export default {
   },
 
    mounted(){
-      this.getApi(this.arrayMovie, this.arrayTv);
+      this.getHome();
     },
 
   methods:{
 
-    getApi(array1, array2){
+    getHome(){
+       axios.get(`${this.apiURLtrend}${this.apiKey}`)
+      .then( response => {
+        this.arrayTrend = response.data.results;
+       
+      })
+      .catch( e => {
+        console.log(e);
+      })
+       axios.get(`${this.apiURLrecommended}${this.apiKey}`)
+      .then( response => {
+        this.arrayRecommended = response.data.results;
+      
+      })
+      .catch( e => {
+        console.log(e);
+      })
+       axios.get(`${this.apiURLtop}${this.apiKey}`)
+      .then( response => {
+        this.arrayTop = response.data.results;
+       
+      })
+      .catch( e => {
+        console.log(e);
+      })
+       axios.get(`${this.apiURLtvPop}${this.apiKey}`)
+      .then( response => {
+        this.arrayTvPop = response.data.results;
+       
+      })
+      .catch( e => {
+        console.log(e);
+      })
+
+
+    },
+
+    getApi(){
+      // axios.get(`${this.apiURLtrend}${this.apiKey}`)
+      // .then( response => {
+      //   this.arrayTrend = response.data.results;
+      //   // this.arrayConcat = array1.concat(array2);
+      // })
+      // .catch( e => {
+      //   console.log(e);
+      // })
+
       axios.get(`${this.apiURLmovie}${this.apiKey}'&query='${this.querySearch}`)
       .then( r => {
-        array1 = r.data.results;
-        this.arrayConcat = array1.concat(array2);
+        this.arrayMovie = r.data.results;
+        // this.arrayConcat = array1.concat(array2);
       })
       .catch( e => {
         console.log(e);
@@ -55,9 +111,8 @@ export default {
 
       axios.get(`${this.apiURLtv}${this.apiKey}'&query='${this.querySearch}`)
       .then( resp => {
-        array2 = resp.data.results;
-        this.arrayConcat = array1.concat(array2);
-
+        this.arrayTv = resp.data.results;
+        // this.arrayConcat = array1.concat(array2);
       })
       .catch( e => {
         console.log(e);
@@ -70,7 +125,8 @@ export default {
 
       querySearchFunction(text){
        this.querySearch = text;
-       this.getApi(this.arrayMovie, this.arrayTv);
+       this.searchClicked = true;
+       this.getApi();
     }
 
   }

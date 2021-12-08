@@ -1,6 +1,8 @@
 <template>
   <header class="fc-flex fc-between fc-align-center">
-    <div class="logo fc-flex fc-align-center fc-justify-center"> BOOLFLIX </div>
+    <div @click="reloadPage" class="logo fc-flex fc-align-center fc-justify-center"> 
+      <img src="../assets/img/boolflix-logo.png" alt="">
+       </div>
 
     <div class="search-bar fc-flex fc-between fc-align-center">
       <input 
@@ -22,6 +24,12 @@ export default {
     return{
       querySearch: '',
     }
+  },
+
+  methods:{
+    reloadPage() {
+      window.location.reload();
+    }
   }
 }
 </script>
@@ -29,7 +37,10 @@ export default {
 <style lang="scss" scoped>
 
  header{
-   height: 100px;
+   position: fixed;
+   height: 70px;
+   width: 100%;
+   z-index: 999;
   //  background-color: black;
    background: linear-gradient(rgb(14, 0, 0), black);
    color: white;
@@ -37,8 +48,13 @@ export default {
       width: 200px;
       height: 80px;
       font-size: 35px;
+      margin-left: 15px;
       color:rgb(199, 15, 15);
       cursor: pointer;
+        img{
+          max-height: 100%;
+          max-width: 100%;
+        }
     }
     .search-bar{
       width: 300px;
