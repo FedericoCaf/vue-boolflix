@@ -7,8 +7,9 @@
      <option value="2">Serie Tv</option>
    </select>
   </div> -->
- <vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">  
+
     <div  v-if="!searchClicked"  class="global-card">
+     <vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">      
         <div class="title-genr fc-flex fc-align-center"> <h2> TITOLI DI TENDENZA </h2> </div>
       
       <div class="container-card fc-flex">
@@ -69,13 +70,12 @@
             </div>
          </div>
       </div>
-     
+  </vue-custom-scrollbar>    
     </div>
- </vue-custom-scrollbar> 
 
-<vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">  
     <div  v-if="!searchClicked"  class="global-card">
-    <div class="title-genr fc-flex fc-align-center"> <h2> RACCOMANDATI PER TE </h2> </div>
+     <vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">  
+     <div class="title-genr fc-flex fc-align-center"> <h2> RACCOMANDATI PER TE </h2> </div>
       
       <div class="container-card fc-flex">
 
@@ -135,12 +135,12 @@
             </div>
         </div>
       </div>
+     </vue-custom-scrollbar> 
     </div>
-</vue-custom-scrollbar> 
 
-<vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">  
     <div  v-if="!searchClicked"  class="global-card">
-    <div class="title-genr fc-flex fc-align-center"> <h2> FILM PIU' VOTATI </h2> </div>
+     <vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">  
+      <div class="title-genr fc-flex fc-align-center"> <h2> FILM PIU' VOTATI </h2> </div>
       
       <div class="container-card fc-flex">
 
@@ -200,17 +200,17 @@
             </div>
         </div>
     </div>
+  </vue-custom-scrollbar> 
     </div>
-</vue-custom-scrollbar> 
 
-<vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">  
     <div  v-if="!searchClicked"  class="global-card">
-    <div class="title-genr fc-flex fc-align-center"> <h2> SERIE TV POPOLARI </h2> </div>
+      <vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">  
+       <div class="title-genr fc-flex fc-align-center"> <h2> SERIE TV POPOLARI </h2> </div>
       
-      <div class="container-card fc-flex">
+        <div class="container-card fc-flex">
 
         <!-- <p> {{this.filteredCards[activeFilm].id}} </p> -->
-        <div v-for="(item, index) in arrayTvPop" :key="item.id" class="card">
+         <div v-for="(item, index) in arrayTvPop" :key="item.id" class="card">
             <div class="card-img">
 
               <img v-if="item.poster_path !== null " :src="'http://image.tmdb.org/t/p/w300' + item.poster_path" alt="">
@@ -264,18 +264,18 @@
                 </ul>
             </div>
         </div>
+     </div>
+   </vue-custom-scrollbar> 
     </div>
-    </div>
-</vue-custom-scrollbar> 
 
-<vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">  
     <div  v-if="searchClicked"  class="global-card">
-    <div class="title-genr fc-flex fc-align-center"> <h2>FILM </h2> </div>
+      <vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle"> 
+       <div class="title-genr fc-flex fc-align-center"> <h2>FILM </h2> </div>
       
-      <div class="container-card fc-flex">
+        <div class="container-card fc-flex">
 
         <!-- <p> {{this.filteredCards[activeFilm].id}} </p> -->
-        <div v-for="(item, index) in arrayMovie" :key="item.id" class="card">
+         <div v-for="(item, index) in arrayMovie" :key="item.id" class="card">
             <div class="card-img">
 
               <img v-if="item.poster_path !== null " :src="'http://image.tmdb.org/t/p/w300' + item.poster_path" alt="">
@@ -330,18 +330,19 @@
             </div>
         </div>
       </div>
-    </div>
-</vue-custom-scrollbar> 
+     </vue-custom-scrollbar> 
 
-<vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">  
+   </div>
+
     <div  v-if="searchClicked"  class="global-card">
-    <div class="title-genr fc-flex fc-align-center"> <h2> SERIE TV </h2> </div>
+     <vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle"> 
+      <div class="title-genr fc-flex fc-align-center"> <h2> SERIE TV </h2> </div>
       
-      <div class="container-card fc-flex">
+       <div class="container-card fc-flex">
       
         <!-- <p> {{this.filteredCards[activeFilm].id}} </p> -->
-        <div v-for="(item, index) in arrayTv" :key="item.id" class="card">
-            <div class="card-img">
+         <div v-for="(item, index) in arrayTv" :key="item.id" class="card">
+             <div class="card-img">
 
               <img v-if="item.poster_path !== null " :src="'http://image.tmdb.org/t/p/w300' + item.poster_path" alt="">
               <div v-else class="card fc-flex fc-align-center fc-justify-center">
@@ -394,9 +395,10 @@
                 </ul>
             </div>
           </div>
-      </div>
+        </div>
+      </vue-custom-scrollbar> 
     </div>
-</vue-custom-scrollbar> 
+
 
   </main>
 </template>
