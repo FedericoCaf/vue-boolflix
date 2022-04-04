@@ -8,7 +8,7 @@
    </select>
   </div> -->
 
-    <div  v-if="!searchClicked"  class="global-card">
+    <div v-if="!searchClicked"  class="global-card">
      <vue-custom-scrollbar class="scroll-area"  :settings="settings" @ps-scroll-y="scrollHanle">      
         <div class="title-genr fc-flex fc-align-center"> <h2> TITOLI DI TENDENZA </h2> </div>
       
@@ -663,6 +663,284 @@ export default {
   top: 0;
   height: 410px;
   width: 300px;
+}
+
+
+
+@media (max-width: 1200px){
+
+ main{
+  position: relative;
+  min-height: 100vh;
+  padding-top: 100px;
+   
+  .container-card{
+    position: relative;
+    width: 100%;
+    // overflow-x: auto;
+     
+  }
+ 
+
+  
+  
+   .card{
+     position: relative;
+     color: white;
+     height: 300px;
+     width: 230px;
+     margin: 15px;
+     padding: 10px;
+     flex-shrink: 0;
+      .content-card-top{
+        height: 35%;
+      }
+      .container-title{
+        height: 35px;
+        overflow: hidden;
+      }
+       h2{
+        font-size: 2vh;
+         
+       }
+       ul{
+         position: relative;
+         height: 250px;
+       }
+       li{
+         padding-bottom: 10px;
+       }
+       .fas{
+         color:yellow;
+       }
+       .far{
+         color:gray;
+       }
+
+   }
+
+.global-title{
+        height: 40px;
+        width: 100%;
+        color: white;
+      }
+    select{
+      margin-left: 30px;
+      width: 120px;
+      height: 22px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .title-genr{
+      // background-color: rgb(49, 10, 10);
+      height: 50px;
+      color: white;
+      border-top: 1px solid rgb(92, 87, 87);
+       h2{
+         margin-left: 15px;
+       }
+    }
+
+ }
+
+ .overview{
+   position: relative;
+   font-size: 14px;
+   width: 100%;
+   height: 60%;
+   overflow: auto;
+    p{
+      position: absolute;
+      cursor: pointer;
+      color: red;
+    }
+ }
+
+ .cast{
+   position: absolute;
+   width: 100%;
+   display: none;
+ }
+
+ .visible{
+   display: block;
+ }
+
+ .invisible{
+   display: none;
+ }
+
+  .language {
+    width: 23px;
+   }
+
+.card-text{
+  opacity: 0;
+  transition: all 2s;
+  z-index: 999;
+}
+.card-img{ 
+  opacity: 1;
+  transition: all 2s;
+   img{
+         max-height: 100%;
+         width: 100%;
+       }
+}
+.card:hover .card-text{
+  opacity: 1;
+}
+.card:hover .card-img{
+  opacity: 0;
+}
+
+.card-img{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 300px;
+  width: 230px;
+}
+
+}
+
+
+@media (max-width: 800px){
+
+ main{
+  position: relative;
+  min-height: 100vh;
+  padding-top: 100px;
+   
+  .container-card{
+    position: relative;
+    width: 100%;
+    // overflow-x: auto;
+     
+  }
+ 
+  
+   .card{
+     position: relative;
+     color: white;
+     height: 210px;
+     width: 130px;
+     margin: 10px;
+     padding: 5px;
+     flex-shrink: 0;
+      .content-card-top{
+        height: 35%;
+      }
+      .container-title{
+        height: 40px;
+        overflow: hidden;
+      }
+       h2{
+        font-size: 2vh;
+         
+       }
+       ul{
+         position: relative;
+         height: 150px;
+       }
+       li{
+         padding-bottom: 10px;
+       }
+       .fas{
+         color:yellow;
+       }
+       .far{
+         color:gray;
+       }
+
+   }
+
+.global-title{
+        height: 30px;
+        width: 100%;
+        color: white;
+      }
+    select{
+      margin-left: 20px;
+      width: 100px;
+      height: 15px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .title-genr{
+      // background-color: rgb(49, 10, 10);
+      height: 45px;
+      color: white;
+      border-top: 1px solid rgb(92, 87, 87);
+       h2{
+         margin-left: 12px;
+       }
+    }
+
+ }
+
+ .overview{
+   display: none;
+   position: relative;
+   font-size: 10px;
+   width: 100%;
+   height: 60%;
+   overflow: auto;
+    p{
+      position: absolute;
+      cursor: pointer;
+      color: red;
+    }
+ }
+
+ .cast{
+   position: absolute;
+   width: 100%;
+   display: none;
+ }
+
+ .visible{
+   display: block;
+ }
+
+ .invisible{
+   display: none;
+ }
+
+  .language {
+    width: 15px;
+   }
+
+.card-text{
+  opacity: 0;
+  transition: all 2s;
+  z-index: 999;
+}
+.card-img{ 
+  opacity: 1;
+  transition: all 2s;
+   img{
+         max-height: 100%;
+         width: 100%;
+       }
+}
+.card:hover .card-text{
+  opacity: 1;
+}
+.card:hover .card-img{
+  opacity: 0;
+}
+
+.card-img{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 240px;
+  width: 130px;
+}
+
 }
 
 </style>

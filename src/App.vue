@@ -91,15 +91,7 @@ export default {
     },
 
     getApi(){
-      // axios.get(`${this.apiURLtrend}${this.apiKey}`)
-      // .then( response => {
-      //   this.arrayTrend = response.data.results;
-      //   // this.arrayConcat = array1.concat(array2);
-      // })
-      // .catch( e => {
-      //   console.log(e);
-      // })
-
+      
       axios.get(`${this.apiURLmovie}${this.apiKey}'&query='${this.querySearch}`)
       .then( r => {
         this.arrayMovie = r.data.results;
@@ -121,12 +113,14 @@ export default {
         console.log('array film',this.arrayMovie);
         console.log('array tv',this.arrayTv);
         console.log('array concatenato', this.arrayConcat);
+        
     },
 
       querySearchFunction(text){
        this.querySearch = text;
        this.searchClicked = true;
        this.getApi();
+       
     }
 
   }
